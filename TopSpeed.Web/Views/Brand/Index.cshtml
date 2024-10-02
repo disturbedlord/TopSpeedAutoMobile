@@ -1,0 +1,48 @@
+﻿@model List<Brand>
+
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-6 text-uppercase">
+            <h2>Brand List</h2>
+        </div>
+        <div class="col-md-6 text-end">
+            <a asp-controller="Brand" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-square"></i> Create
+            </a>
+        </div>
+    </div>
+    <hr/>
+    @if(Model.Count() > 0){
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                
+           <th>Established Year</th></tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <tr><td>@item.Name</td>
+                    <td>@item.EstablishedYear</td>
+                    <td class="d-flex align-items-center justify-content-center">
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Brand" asp-action="Details" asp-route-id="@item.Id"
+                            class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Details">Update</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        </table>
+    }else
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-center text-uppercase text-warning">No Records Found</h2>
+                </div>
+            </div>
+        </div>
+    }
+</div>
